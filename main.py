@@ -139,9 +139,8 @@ def shop():
 
 @app.route("/item/<string:item_slug>", methods=['GET'])
 def item_route(item_slug):
-    related_items = int(params['related_items'])
     item = shopitems.query.filter_by(slug=item_slug).first()
-    items = shopitems.query.filter_by().all()[0:int(related_items)]
+    items = shopitems.query.filter_by().all()[0:int(params['related_items'])]
     return render_template('shop/shop-item.html', params=params, item=item, items=items)
 
 
