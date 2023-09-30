@@ -1,0 +1,16 @@
+{
+    "params":
+    {
+        "local_server": "True",
+        "local_uri": "mysql://root:@localhost/project",
+        "prod_uri": "mysql://root:@localhost/pythonproject",
+        "yt_url": "https://youtube.com/@Poofio28?si=mAkw38N766ScXDgU",
+        "gmail-user": "email@gmail.com",
+        "gmail-pass": "password",
+        "no_of_items_on_shop": "2",
+        "related_items": "8",
+        "admin-user": "poofio28",
+        "admin-pass": "adminpass",
+        "image_upload_location": "C:\\Users\\Finquest\\Desktop\\rohit\\Programs\\py\\web app\\static\\img"
+    }
+}

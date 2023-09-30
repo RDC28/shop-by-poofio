@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename = '/shop/assets/favicon.ico') }}" />
+        <!-- Bootstrap icons-->
+        <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css”/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{{ url_for('static', filename = 'shop/css/styles.css') }}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href='/dashboard'>Dashboard</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('shop') }}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url_for('contact') }}">Contact</a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <hr>
+        <h2 class="text-center"><b>Manage Shop Items</b></h2>
+        <hr>
+        <div class="row">
+            <div style="display: flex; gap: 5px;">
+            <div class="col-1" style="margin-left: 15vw;"> Actions: &nbsp;</div>
+            <div><a href="/edit/0" ><button class="btn btn-primary">Add a new item to the shop</button></a></div>
+            <div><a href="/logout" ><button class="btn btn-primary">Logout</button></a></div>
+            </div>
+        </div>
+        <hr>
+        <div style="display: flex; justify-content: center; align-items: center;">
+            <div style="width: 70vw;">
+            <table class="table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">sno</th>
+                    <th scope="col">item-name</th>
+                    <th scope="col">price</th>
+                    <th scope="col">manufacturer</th>
+                    <th scope="col">date</th>
+                    <th scope="col">edit</th>
+                    <th scope="col">delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% set sno=0 %}
+                    {% for item in items %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{item.name}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.manufacturer}}</td>
+                    <td>{{item.date}}</td>
+                    <td><a href="/edit/{{item.sno}}"><button class="btn btn-primary">edit</button></a></td>
+                    <td><a onclick="checker()" href="/delete/{{item.sno}}"><button class="btn btn-primary">delete</button></a></td>
+                </tr>
+                    
+                    {% endfor%}
+
+                </tbody>
+            </table>
+            </div>
+        </div>
+    <script>
+        function checker(){
+            var result = confirm('Are you sure you want to delete this item?\ndeleted items can not be recovered.');
+            if (result == false){
+                event.preventDefault();
+            }
+        }
+
+
+    </script>
+        <!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023 
+            &nbsp;<a href="{{params['yt_url']}}" target="_blank"><i class="bi bi-youtube"></i></a>
+            </p>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="{{ url_for('static', filename = 'shop/js/scripts.js') }}    "></script>
+    </body>
+</html>
